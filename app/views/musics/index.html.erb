@@ -1,13 +1,51 @@
 <h1>Listing musics</h1>
+<script type="text/javascript" charset="utf8">
+  function tableReload() {
+    var responsiveHelper;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone : 480
+    };
+    var tableElement = $('#musicTable');
 
-<table>
+    tableElement.dataTable({
+        'paging'         : false,
+        autoWidth        : false,
+        preDrawCallback: function () {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback    : function (nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback   : function (oSettings) {
+            responsiveHelper.respond();
+        },
+        "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ -1, -2, -3 ] }
+       ]
+    });
+  }
+
+  $(document).ready(function() {
+    tableReload()
+    $('#musicTable_filter').css('float','right');
+  } );
+
+</script>
+
+<table id="musicTable" class="display" width="100%" style="width:100%;">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Format</th>
-      <th>Length</th>
-      <th>Size</th>
-      <th>Sizeformat</th>
+      <th >Name</th>
+      <th data-hide="phone" data-name="Format">Format</th>
+      <th data-hide="phone,tablet" data-name="Length">Length(HH:MM)</th>
+      <th data-hide="phone,tablet" data-name="Size">Size</th>
+      <th display:none>
+      <th display:none>
+      <th display:none>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +55,8 @@
       <tr>
         <td><%= music.name %></td>
         <td><%= music.format %></td>
-        <td><%= music.length %></td>
-        <td><%= music.size %></td>
-        <td><%= music.sizeFormat %></td>
+        <td><%= music.length.hour %>:<%= music.length.min %>:<%= music.length.sec %></td>
+        <td><%= music.size %><%= music.sizeFormat %></td>
         <td><%= link_to 'Show', music %></td>
         <td><%= link_to 'Edit', edit_music_path(music) %></td>
         <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
