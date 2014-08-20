@@ -67,3 +67,39 @@ div {
     list-style: square;
   }
 }
+
+#spilgames-splash-screen{
+    width: 100%;
+    height: 100%;
+background: url('http://www.wallpaper4me.com/images/wallpapers/musiccollection-90800.jpeg') top center no-repeat; /* Change "A10" to "GGG" or "Zibbo" based on the brand your game matches */
+    position: absolute;
+    z-index: 10000; /* Make sure its on top of the game */
+    background-size: 100%;
+    background-color:#3890ae; /* Change to #FFF for GGG or Zibbo branded games */
+    margin-left: -4%;
+    margin-top: -4%;
+}
+
+table.has-columns-hidden > tbody > tr > td > span.responsiveExpander {
+    background: url('../img/plus.png') no-repeat 5px center;
+    padding-left: 32px;
+    cursor: pointer;
+}
+
+table.has-columns-hidden > tbody > tr.detail-show > td span.responsiveExpander {
+    background: url('../img/minus.png') no-repeat 5px center;
+}
+
+table.has-columns-hidden > tbody > tr.row-detail > td {
+    background: #eee;
+}
+
+table.has-columns-hidden > tbody > tr.row-detail > td > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+table.has-columns-hidden > tbody > tr.row-detail > td > ul > li > span.columnTitle {
+    font-weight: bold;
+}
