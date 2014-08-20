@@ -17,19 +17,16 @@
   </div>
   <div class="field">
     <%= f.label :format %><br>
-    <%= f.text_field :format %>
+    <%= f.select :format, options_for_select(%w[CD Tape MP3 8Track]) %>
   </div>
   <div class="field">
     <%= f.label :length %><br>
-    <%= f.time_select :length %>
+    <%= f.time_select :length, {:include_seconds => true} %>
   </div>
   <div class="field">
     <%= f.label :size %><br>
-    <%= f.text_field :size %>
-  </div>
-  <div class="field">
-    <%= f.label :sizeFormat %><br>
-    <%= f.text_field :sizeFormat %>
+    <%= f.number_field :size %>
+    <%= f.select :sizeFormat, options_for_select(%w[KB MB]) %>
   </div>
   <div class="actions">
     <%= f.submit %>
