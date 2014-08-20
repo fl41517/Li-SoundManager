@@ -1,19 +1,7 @@
 <h1>Listing musics</h1>
 <script type="text/javascript" charset="utf8">
-  function tableReload() {
-    var responsiveHelper;
-    var breakpointDefinition = {
-        tablet: 1024,
-        phone : 480
-    };
-    var tableElement = $('#musicTable');
-
-    tableElement.dataTable();
-  }
-
-  $(document).ready(function() {
-    $('#musicTable').dataTable();
-    $('#musicTable_filter').css('float','right');
+  $(document).ready( function() {
+    $('#musicTable').DataTable();
   } );
 
 </script>
