@@ -18,7 +18,12 @@
 
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8">
+      $(document).ready( function() {
+        $('#musicTable').DataTable();
+      } );
 
+    </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -63,7 +68,7 @@
       </div>
     </div>
 
-    
+
 <div class="container page-header">
 <%= yield %>
 </div>
