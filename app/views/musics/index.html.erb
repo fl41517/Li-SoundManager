@@ -1,5 +1,41 @@
 <h1>Listing musics</h1>
 
+<script type="text/javascript" charset="utf8">
+  function tableReload() {
+    var responsiveHelper;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone : 480
+    };
+    var tableElement = $('#musicTable');
+
+    tableElement.dataTable({
+        'paging'         : false,
+        autoWidth        : false,
+        preDrawCallback: function () {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback    : function (nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback   : function (oSettings) {
+            responsiveHelper.respond();
+        },
+        "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ -1, -2, -3 ] }
+       ]
+    });
+  }
+
+  $(document).ready(function() {
+    tableReload()
+    $('#musicTable_filter').css('float','right');
+  } );
+
+</script>
 
 <table id="musicTable" class="display" width="100%" style="width:100%;">
   <thead>
