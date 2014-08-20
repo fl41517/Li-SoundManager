@@ -8,25 +8,7 @@
     };
     var tableElement = $('#musicTable');
 
-    tableElement.dataTable({
-        'paging'         : false,
-        autoWidth        : false,
-        preDrawCallback: function () {
-            // Initialize the responsive datatables helper once.
-            if (!responsiveHelper) {
-                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
-            }
-        },
-        rowCallback    : function (nRow) {
-            responsiveHelper.createExpandIcon(nRow);
-        },
-        drawCallback   : function (oSettings) {
-            responsiveHelper.respond();
-        },
-        "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ -1, -2, -3 ] }
-       ]
-    });
+    tableElement.dataTable();
   }
 
   $(document).ready(function() {
