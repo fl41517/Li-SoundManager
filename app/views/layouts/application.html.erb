@@ -59,10 +59,17 @@
         </div>
         <div class="collapse navbar-collapse" ng-controller="HeaderController">
           <ul class="nav navbar-nav">
-            <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
-            <!-- <li ng-class="{ active: isActive('/collections')}"><a href="/collections">Collections</a></li> -->
-            <li ng-class="{ active: isActive('/musics')}"><a href="/musics">Muscis</a></li>
-            <li ng-class="{ active: isActive('/musics/new')}"><a href="/musics/new">New Music</a></li>
+
+            <% if user_signed_in? %>
+
+              <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
+              <li ng-class="{ active: isActive('/musics')}"><a href="/users/<%= current_user.id %>/musics">Muscis</a></li>
+              <li ng-class="{ active: isActive('/musics/new')}"><a href="/users/<%= current_user.id %>/musics/new">New Music</a></li>
+              <li ><%= link_to "Logout", destroy_user_session_path, :method => :delete%></li>
+            <% else %>
+              <li ng-class="{ active: isActive('/users/sign_in)}"><a href="/users/sign_in">Sign In</a></li>
+              <li ng-class="{ active: isActive('/users/sign_up')}"><a href="/users/sign_up">Sign Up</a></li>
+            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -72,7 +79,8 @@
 <div class="container page-header">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  
+
+
   <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>

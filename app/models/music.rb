@@ -1,5 +1,6 @@
 class Music < ActiveRecord::Base
   belongs_to :collection
+  belongs_to :user
   validates_presence_of :name
   validates_presence_of :format
   validates_presence_of :length
