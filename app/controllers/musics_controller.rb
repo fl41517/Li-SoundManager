@@ -25,11 +25,12 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.json
   def create
-    @music = Music.new(music_params)
+
+    @music = current_user.music.create(music_params)
 
     respond_to do |format|
       if @music.save
-        format.html { redirect_to @music, notice: 'Music was successfully created.' }
+        format.html { redirect_to user_musics_path(resource), notice: 'Music was successfully created.' }
         format.json { render :show, status: :created, location: @music }
       else
         format.html { render :new }
@@ -65,11 +66,11 @@ class MusicsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_music
-      @music = Music.find(params[:id])
+      @music = Music.where("userID" => current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def music_params
-      params.require(:music).permit(:name, :format, :length, :size, :sizeFormat)
+      params.require(:music).permit(:name, :format, :length, :size, :sizeFormat, :userID)
     end
 end
