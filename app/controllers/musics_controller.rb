@@ -25,12 +25,11 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.json
   def create
-
-    @music = current_user.music.create(music_params)
+    @music = Music.new(music_params)
 
     respond_to do |format|
       if @music.save
-        format.html { redirect_to user_musics_path(resource), notice: 'Music was successfully created.' }
+        format.html { redirect_to user_musics_path, notice: 'Music was successfully created.' }
         format.json { render :show, status: :created, location: @music }
       else
         format.html { render :new }

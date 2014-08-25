@@ -58,9 +58,11 @@
         <td><%= music.format %></td>
         <td><%= music.length.hour %>:<%= music.length.min %>:<%= music.length.sec %></td>
         <td><%= music.size %><%= music.sizeFormat %></td>
-        <td><%= link_to 'Show', music %></td>
-        <td><%= link_to 'Edit', edit_music_path(music) %></td>
-        <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td ><a href="/users/<%= current_user.id %>/musics/1">Show</a></td>
+        <td ><a href="/users/<%= current_user.id %>/musics/1/edit">Edit</a></td>
+        <td ><a href="/users/<%= current_user.id %>/musics/1/destroy">Destroy</a></td>
+
       </tr>
     <% end %>
   </tbody>
